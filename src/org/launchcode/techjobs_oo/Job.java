@@ -1,4 +1,5 @@
 package org.launchcode.techjobs_oo;
+import java.util.Objects;
 
 public class Job {
 
@@ -30,26 +31,18 @@ public class Job {
 
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
-    //FIGURE THIS OUT!!!!!!!!!
-    /*@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!)
-    }*/
 
-    //maybe this?
-    /*@Override
+    @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PositionType)) return false;
-        PositionType that = (PositionType) o;
-        return getId() == that.getId();
+        if (o == null || getClass() != o.getClass()) return false;
+        Job job = (Job) o;
+        return getId() == job.getId();
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getId());
-    }*/
+    }
 
     // tod0: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
@@ -97,4 +90,24 @@ public class Job {
     public int getId() {
         return id;
     }
+
+    public String emptyField(String methodReturn) {
+        if (methodReturn == null) {
+            return "Data not available";
+        } else {
+            return methodReturn;
+        }
+    }
+    //toString
+    @Override
+    public String toString(){
+        String output = "\nID: " + this.getId() +
+                "\n Name: " + this.getName() +
+                "\n Employer: " + this.emptyField(this.getEmployer().getValue()) +
+                "\n Location: " + this.emptyField(this.getLocation().getValue()) +
+                "\n Position Type: " + this.emptyField(this.getPositionType().getValue()) +
+                "\n Core Competency: " + this.emptyField(this.getCoreCompetency().getValue()) + "\n";
+        return output;
+    }
+
 }
